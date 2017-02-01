@@ -4,35 +4,19 @@ use Dancer2;
 use Dancer2::Plugin::Database;
 
 get '/' => sub {
-    my $sth = database->prepare(
-        q{
-            SELECT *
-            FROM content
-            WHERE code = 'index'
-        }
-    );
-    $sth->execute;
-    my $content = $sth->fetchrow_hashref;
-    return $content->{page_text};
+    database->quick_lookup('content', { code => 'index' }, 'page_text');
 };
 
 get '/about' => sub {
-    my $sth = database->prepare(
-        q{
-            SELECT *
-            FROM content
-            WHERE code = 'about'
-        }
-    );
-    $sth->execute;
-    my $content = $sth->fetchrow_hashref;
-    return $content->{page_text};
+    database->quick_lookup('content', { code => 'about' }, 'page_text');
 };
 
 get '/career-resources' => sub {
+    database->quick_lookup('content', { code => 'career-resources' }, 'page_text');
 };
 
 get '/our-approach' => sub {
+    database->quick_lookup('content', { code => 'our-approach' }, 'page_text');
 };
 
 1;
