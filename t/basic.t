@@ -10,9 +10,9 @@ use ChemJobs::Schema;
 use_ok('ChemJobs::Schema');
 
 my $schema = ChemJobs::Schema->connect(
-    'dbi:' . config->{plugins}{Database}{driver} .':' . config->{plugins}{Database}{database},
-    config->{plugins}{Database}{username},
-    config->{plugins}{Database}{password},
+    config->{plugins}{DBIC}{default}{dsn},
+    config->{plugins}{DBIC}{default}{user},
+    config->{plugins}{DBIC}{default}{password},
 );
 my $job_rs = $schema->resultset('Job');
 

@@ -1,22 +1,26 @@
 package ChemJobs;
 
 use Dancer2;
-use Dancer2::Plugin::Database;
+use Dancer2::Plugin::DBIC;
 
 get '/' => sub {
-    database->quick_lookup('content', { id => 'index' }, 'page_text');
+    my $content = rset('Content')->find('index');
+    $content->page_text;
 };
 
 get '/about' => sub {
-    database->quick_lookup('content', { id => 'about' }, 'page_text');
+    my $content = rset('Content')->find('about');
+    $content->page_text;
 };
 
 get '/career-resources' => sub {
-    database->quick_lookup('content', { id => 'career-resources' }, 'page_text');
+    my $content = rset('Content')->find('career-resources');
+    $content->page_text;
 };
 
 get '/our-approach' => sub {
-    database->quick_lookup('content', { id => 'our-approach' }, 'page_text');
+    my $content = rset('Content')->find('our-approach');
+    $content->page_text;
 };
 
 1;
