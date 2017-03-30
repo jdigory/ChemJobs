@@ -5,7 +5,6 @@ use warnings;
 
 use Test::More;
 use Dancer2;
-use ChemJobs::Schema;
 
 use_ok('ChemJobs::Schema');
 
@@ -28,10 +27,18 @@ is(
 # check custom methods are defined
 can_ok( $job_rs, qw(salary_less_than) );
 
-is(
-    $job_rs->salary_less_than(50)->salary,
-    '',
-    'Should perform search using custom method'
-);
+#is(
+#    $job_rs->salary_less_than(50)->salary,
+#    '',
+#    'Should perform search using custom method'
+#);
+
+#
+# Content
+#
+
+my $content_rs = $schema->resultset('Content');
+
+can_ok( $content_rs, qw(category_listing) );
 
 done_testing;
